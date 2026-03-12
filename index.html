@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="B10 Bracket">
+<meta name="theme-color" content="#080c14">
+<title>B10 Bracket 2026</title>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='36' fill='%23080c14'/%3E%3Crect x='12' y='12' width='156' height='156' rx='28' fill='%230f1520' stroke='%23CC0000' stroke-width='3'/%3E%3Ctext x='90' y='98' font-family='Arial Black' font-weight='900' font-size='58' fill='%23CC0000' text-anchor='middle'%3EB10%3C/text%3E%3Ctext x='90' y='136' font-family='Arial' font-weight='700' font-size='18' fill='%23ffd700' text-anchor='middle'%3EBRACKET%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+/* Force dark everywhere — prevents htmlpreview.github.io from injecting white */
+html { background: #080c14 !important; }
+body { background: #080c14 !important; color: #dde4f0 !important; }
+
+- { color-scheme: dark !important; }
+
+:root {
+–bg: #080c14;
+–card: #0f1520;
+–card2: #141d2e;
+–border: #1c2a42;
+–border2: #243352;
+–text: #dde4f0;
+–muted: #5a6e90;
+–muted2: #7a90b5;
+–red: #CC0000;
+–gold: #C8A951;
+–gold2: #e8c96a;
+–green: #22c55e;
+–orange: #f97316;
+–sky: #38bdf8;
+–purple: #a78bfa;
+–pick: #ffd700;
+}
+
+html, body {
+background: #080c14 !important;
+color: #dde4f0 !important;
+font-family: ‘Barlow’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* Force all card backgrounds dark — htmlpreview override protection */
+.gc { background: #0f1520 !important; }
+.gc-top { background: #141d2e !important; }
+.gc-body { background: #0f1520 !important; }
+.sb-body { background: #0f1520 !important; }
+.sb-footer { background: #090e1a !important; }
+.odds-row { background: #0b1220 !important; }
+.round-panel { background: #080c14 !important; }
+.page-content { background: #080c14 !important; }
+.futures-bar { background: #0c1220 !important; }
+.live-bar { background: #0a0f1c !important; }
+.legend { background: #090d17 !important; }
+.header { background: #0b1022 !important; }
+.round-tabs { background: #141d2e !important; }
+.team-row { background: transparent !important; }
+.team-row.w { background: rgba(34,197,94,0.06) !important; }
+.team-row.pick-team { background: rgba(255,215,0,0.07) !important; }
+.sb-row { background: transparent !important; }
+.sb-row.sb-pick { background: rgba(255,215,0,0.06) !important; }
+.install-banner { background: #110d00 !important; }
+.header {
+background: linear-gradient(180deg,#0b1022,#080c14);
+border-bottom: 1px solid var(–border);
+padding: 12px 16px;
+padding-top: calc(12px + env(safe-area-inset-top));
+display: flex;
+align-items: center;
+gap: 12px;
+position: sticky;
+top: 0;
+z-index: 100;
+}
+.logo {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 900;
+font-size: 1.6rem;
+letter-spacing: -0.02em;
+line-height: 1;
+flex-shrink: 0;
+}
+.logo span { color: var(–red); display: block; }
+.header-info h1 {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 800;
+font-size: 1rem;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+line-height: 1.2;
+}
+.header-info p {
+color: var(–muted2);
+font-size: 0.65rem;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+margin-top: 2px;
+}
+.odds-tag {
+margin-left: auto;
+background: linear-gradient(135deg,#1a1000,#2a1a00);
+border: 1px solid #8a6000;
+border-radius: 6px;
+padding: 5px 8px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700;
+font-size: 0.62rem;
+color: var(–gold2);
+text-transform: uppercase;
+letter-spacing: 0.08em;
+flex-shrink: 0;
+text-align: center;
+}
+
+/* ── INSTALL BANNER ── */
+.install-banner {
+display: none;
+align-items: center;
+gap: 10px;
+background: linear-gradient(90deg,#110d00,#090e1c);
+border-bottom: 1px solid #5a4000;
+padding: 10px 16px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.8rem;
+color: var(–gold2);
+font-weight: 600;
+}
+.install-banner.show { display: flex; }
+.ib-icon { font-size: 1.3rem; flex-shrink: 0; }
+.ib-text { flex: 1; line-height: 1.4; }
+.ib-text strong { color: #fff; }
+.ib-steps { color: var(–muted2); font-size: 0.7rem; }
+.ib-close {
+background: none; border: 1px solid #3a2800; border-radius: 4px;
+color: var(–muted); font-size: 0.68rem;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+cursor: pointer; padding: 4px 8px; flex-shrink: 0;
+}
+
+/* ── LIVE TICKER BAR ── */
+.live-bar {
+background: #0a0f1c;
+border-bottom: 1px solid var(–border);
+padding: 0 12px;
+display: flex;
+align-items: center;
+height: 38px;
+overflow: hidden;
+}
+.live-pill {
+display: flex; align-items: center; gap: 5px;
+background: #1a0808; border: 1px solid #8a0000;
+border-radius: 4px; padding: 2px 7px;
+margin-right: 10px; flex-shrink: 0;
+}
+.live-dot {
+width: 6px; height: 6px; border-radius: 50%;
+background: var(–red);
+animation: livepulse 1.2s ease-in-out infinite;
+}
+@keyframes livepulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.live-pill-text {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 800; font-size: 0.6rem;
+text-transform: uppercase; letter-spacing: 0.1em; color: #f87171;
+}
+.ticker-track { flex:1; overflow:hidden; position:relative; }
+.ticker-inner {
+display: flex; gap: 0; white-space: nowrap;
+animation: tickerscroll 12s linear infinite;
+}
+.ticker-inner:hover { animation-play-state: paused; }
+@keyframes tickerscroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.ticker-game {
+display: inline-flex; align-items: center; gap: 8px;
+padding: 0 16px; border-right: 1px solid var(–border);
+font-family: ‘Barlow Condensed’, sans-serif; font-size: 0.78rem;
+}
+.tg-label { font-weight:700; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.08em; color:var(–muted); }
+.tg-score { font-weight:900; font-size:0.88rem; }
+.tg-period { font-size:0.58rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; padding:1px 4px; border-radius:3px; }
+.tg-live { background:#1a0808; color:#f87171; }
+.tg-final { background:#0a1a0a; color:#4ade80; }
+.tg-pre { background:#0a1230; color:#60a5fa; }
+.refresh-btn {
+margin-left: 8px; flex-shrink: 0;
+background: #0f1a30; border: 1px solid var(–border);
+border-radius: 4px; padding: 4px 8px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700; font-size: 0.6rem;
+text-transform: uppercase; letter-spacing: 0.06em;
+color: var(–muted2); cursor: pointer;
+}
+.last-update {
+flex-shrink: 0; margin-left: 6px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.55rem; color: var(–muted);
+text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+/* ── FUTURES BAR ── */
+.futures-bar {
+background: #0c1220;
+border-bottom: 1px solid var(–border);
+padding: 8px 12px;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+display: flex;
+gap: 6px;
+align-items: center;
+scrollbar-width: none;
+}
+.futures-bar::-webkit-scrollbar { display:none; }
+.futures-label {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700; font-size: 0.62rem;
+color: var(–muted); text-transform: uppercase;
+letter-spacing: 0.1em; flex-shrink: 0; margin-right: 4px;
+}
+.futures-chip {
+display: flex; align-items: center; gap: 5px;
+background: var(–card2); border: 1px solid var(–border);
+border-radius: 20px; padding: 3px 9px 3px 7px;
+font-family: ‘Barlow Condensed’, sans-serif; flex-shrink: 0;
+}
+.futures-chip.fav { border-color:#8a6000; background:#1a1000; }
+.futures-chip .rank { font-weight:700; font-size:0.6rem; color:var(–muted); }
+.futures-chip .name { font-weight:700; font-size:0.78rem; color:var(–text); }
+.futures-chip .ml { font-weight:800; font-size:0.78rem; }
+.ml-fav { color:var(–red); }
+.ml-long { color:var(–sky); }
+.ml-mid { color:var(–purple); }
+
+/* ── ROUND TABS ── */
+.round-tabs {
+display: flex;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+scrollbar-width: none;
+border-bottom: 1px solid var(–border);
+background: var(–card2);
+position: sticky;
+top: 66px;
+z-index: 50;
+}
+.round-tabs::-webkit-scrollbar { display: none; }
+.round-tab {
+flex-shrink: 0;
+padding: 10px 14px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700; font-size: 0.72rem;
+text-transform: uppercase; letter-spacing: 0.06em;
+color: var(–muted); cursor: pointer;
+border-bottom: 2px solid transparent;
+white-space: nowrap;
+transition: color 0.15s, border-color 0.15s;
+background: none; border-top: none; border-left: none; border-right: none;
+}
+.round-tab.active { color: #fff; border-bottom-color: var(–orange); }
+.round-tab .tab-date { display: block; font-size: 0.55rem; color: var(–muted); font-weight: 600; margin-top: 1px; }
+.round-tab.active .tab-date { color: var(–muted2); }
+.round-tab .tab-live { color: var(–orange); font-size: 0.55rem; }
+
+/* ── ROUND PANELS ── */
+.round-panel { display: none; padding: 12px; }
+.round-panel.active { display: block; }
+
+/* ── GAME CARD ── */
+.gc {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 10px;
+overflow: hidden;
+border-left: 3px solid transparent;
+margin-bottom: 10px;
+}
+.gc.final { border-left-color: var(–green); }
+.gc.today { border-left-color: var(–orange); animation: cardpulse 2.5s ease-in-out infinite; }
+.gc.upcoming { border-left-color: var(–sky); }
+.gc.tbd { border-left-color: #1e2d44; opacity: 0.7; }
+@keyframes cardpulse {
+0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,0)}
+50%{box-shadow:0 0 12px 2px rgba(249,115,22,0.15)}
+}
+
+.gc-top {
+display: flex; align-items: center; gap: 6px;
+padding: 6px 10px;
+background: var(–card2);
+border-bottom: 1px solid var(–border);
+}
+.gc-num {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700; font-size: 0.62rem;
+color: var(–muted); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.gc-status {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 800; font-size: 0.68rem;
+text-transform: uppercase; letter-spacing: 0.06em;
+}
+.st-final { color: var(–green); }
+.st-today { color: var(–orange); }
+.st-up { color: var(–sky); }
+.st-live-active { color: var(–orange); animation: livepulse 1.2s ease-in-out infinite; }
+.st-final-label { color: var(–green); }
+.gc-spacer { flex:1; }
+.ch-pill {
+font-size: 0.58rem; font-weight:700;
+padding: 2px 6px; border-radius: 3px;
+text-transform: uppercase; letter-spacing: 0.04em;
+}
+.cp-btn { background:#0c1e42; color:#93c5fd; }
+.cp-peacock { background:#061c12; color:#86efac; }
+.cp-cbs { background:#2a0a0a; color:#fca5a5; }
+
+/* Final game body */
+.gc-body { padding: 6px 10px 8px; }
+.team-row {
+display: flex; align-items: center; gap: 6px;
+padding: 4px 0; border-radius: 4px;
+}
+.team-row.w { background: rgba(34,197,94,0.06); padding: 4px 4px; margin: 0 -4px; }
+.team-row.l { opacity: 0.5; }
+.team-row.pick-team {
+background: rgba(255,215,0,0.07);
+border: 1px solid rgba(255,215,0,0.12);
+padding: 4px 6px; margin: 2px -6px; border-radius: 4px;
+}
+.seed {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700; font-size: 0.65rem;
+color: var(–muted); width: 16px; text-align: right; flex-shrink: 0;
+}
+.tname {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 700; font-size: 1rem; flex:1; letter-spacing: 0.01em;
+}
+.tname.strk { text-decoration: line-through; text-decoration-color: #2a3a50; color: var(–muted); }
+.score-val {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 800; font-size: 1rem;
+min-width: 26px; text-align: right;
+}
+.score-val.w { color: var(–green); }
+.score-val.l { color: #2a3a50; }
+.div-line { border:none; border-top:1px solid var(–border); margin:2px 0; }
+
+/* Odds row */
+.odds-row {
+display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+padding: 5px 10px 6px;
+background: #0b1220; border-top: 1px solid var(–border);
+font-size: 0.65rem; color: var(–muted);
+font-family: ‘Barlow Condensed’, sans-serif;
+}
+.odds-lbl { font-weight:700; text-transform:uppercase; letter-spacing:0.08em; }
+.odds-val { font-weight:800; font-size:0.74rem; padding:1px 5px; border-radius:3px; flex-shrink:0; }
+.ov-fav { background:#1a0808; color:#f87171; }
+.odds-team { font-weight:600; color:var(–text); }
+.ou-tag { margin-left: auto; color: var(–muted); }
+
+/* Scoreboard (today’s games) */
+.sb-body { padding: 6px 10px 4px; }
+.sb-row { display:flex; align-items:center; gap:6px; padding:6px 2px; }
+.sb-row.sb-pick {
+background: rgba(255,215,0,0.06); border-radius:4px;
+padding:6px 4px; margin:0 -4px;
+}
+.sb-seed {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight:700; font-size:0.65rem; color:var(–muted);
+width:16px; text-align:right; flex-shrink:0;
+}
+.sb-team {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight:700; font-size:1.05rem; flex:1; letter-spacing:0.01em;
+}
+.sb-score {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight:900; font-size:1.5rem;
+min-width:34px; text-align:right; letter-spacing:-0.02em;
+}
+.sb-score.leading { color: var(–green); }
+.sb-score.trailing { color: var(–muted); }
+.sb-score.pre { color: #2a3a50; }
+.sb-footer {
+display:flex; align-items:center; justify-content:space-between;
+padding:5px 10px 7px;
+border-top:1px solid var(–border); background:#090e1a; gap:8px;
+}
+.sb-spread {
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:0.68rem; font-weight:600; color:var(–muted); letter-spacing:0.04em;
+}
+.sb-pick-tag {
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:0.66rem; font-weight:800; color:var(–pick);
+letter-spacing:0.06em; text-transform:uppercase;
+background:#1a1400; border:1px solid #5a4800; border-radius:3px; padding:2px 6px; flex-shrink:0;
+}
+
+/* ── CHAMPIONSHIP CARD ── */
+.champ-card {
+background: linear-gradient(145deg,#0f1520,#141d2e);
+border: 2px solid var(–gold);
+border-radius: 12px;
+padding: 20px 16px;
+text-align: center;
+margin-bottom: 10px;
+}
+.champ-icon { font-size: 2.5rem; display: block; margin-bottom: 8px; }
+.champ-lbl {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 800; font-size: 0.72rem;
+letter-spacing: 0.15em; text-transform: uppercase; color: var(–gold);
+}
+.champ-name {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 900; font-size: 1.6rem; color: #fff; margin-top: 8px;
+}
+.champ-badge {
+display: inline-block; margin-top: 8px;
+background: #1a1400; border: 1px solid var(–gold);
+border-radius: 4px; padding: 3px 10px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 800; font-size: 0.68rem;
+color: var(–pick); text-transform: uppercase; letter-spacing: 0.1em;
+}
+.champ-sub {
+font-size: 0.72rem; color: var(–muted); margin-top: 10px;
+line-height: 1.7; text-transform: uppercase; letter-spacing: 0.07em;
+}
+.champ-sub strong { color: var(–red); font-size: 0.8rem; display: block; }
+
+/* ── ROUND HEADER ── */
+.round-section-hdr {
+display: flex; align-items: center; gap: 8px;
+margin-bottom: 10px;
+}
+.rsh-label {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 900; font-size: 1rem;
+text-transform: uppercase; letter-spacing: 0.08em; color: #fff;
+}
+.rsh-date {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 600; font-size: 0.72rem; color: var(–muted2);
+}
+.rsh-net {
+margin-left: auto;
+font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;
+padding: 2px 7px; border-radius: 3px; text-transform: uppercase;
+}
+.net-peacock { background:#0a2a1e; color:#4ade80; }
+.net-btn { background:#0a1a3a; color:#60a5fa; }
+.net-cbs { background:#2a0808; color:#f87171; }
+.net-multi { background:#1a1030; color:#c4b5fd; }
+
+/* ── RIVALRY CARD ── */
+.rivalry-card {
+background: linear-gradient(135deg,#0a0f1e,#0d0a00 50%,#0e0018);
+border: 1px solid var(–border2);
+border-top: 3px solid #4E2683;
+border-radius: 10px;
+overflow: hidden;
+margin-bottom: 16px;
+}
+.rivalry-header {
+padding: 12px 14px;
+background: linear-gradient(90deg,rgba(0,39,76,0.4),rgba(78,38,131,0.3));
+border-bottom: 1px solid var(–border2);
+}
+.rivalry-header h3 {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 900; font-size: 1rem;
+text-transform: uppercase; letter-spacing: 0.08em; color: #fff;
+}
+.rivalry-prob {
+display: inline-block; margin-top: 4px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 800; font-size: 0.65rem;
+letter-spacing: 0.06em; text-transform: uppercase;
+background: #1a0808; border: 1px solid #8a0000;
+border-radius: 4px; padding: 2px 7px; color: #f87171;
+}
+.rivalry-teams {
+display: flex; align-items: stretch;
+border-bottom: 1px solid var(–border2);
+}
+.rv-team-block {
+flex: 1; padding: 14px 14px;
+display: flex; flex-direction: column; gap: 3px;
+}
+.rv-team-block.right { text-align: right; border-left: 1px solid var(–border2); }
+.rv-school {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 900; font-size: 1.3rem; letter-spacing: -0.01em;
+}
+.rv-colors {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.66rem; font-weight: 700;
+color: var(–muted2); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.rv-info {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.65rem; color: var(–muted); margin-top: 2px;
+}
+.rv-center {
+display: flex; flex-direction: column; align-items: center;
+justify-content: center; padding: 10px 8px; gap: 4px; flex-shrink: 0;
+}
+.rv-vs-text {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 900; font-size: 1rem; color: var(–muted2); letter-spacing: 0.1em;
+}
+.rv-game-lbl {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.58rem; font-weight: 700;
+color: var(–sky); text-transform: uppercase;
+letter-spacing: 0.05em; text-align: center; line-height: 1.5;
+}
+.rv-score-row {
+display: flex; align-items: center; padding: 12px 14px;
+background: #080c14; border-bottom: 1px solid var(–border);
+gap: 0;
+}
+.rv-score-block { flex: 1; }
+.rv-score-block.right { text-align: right; }
+.rv-score-lbl {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.58rem; font-weight: 700;
+color: var(–muted); text-transform: uppercase; letter-spacing: 0.1em;
+}
+.rv-score-num {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 900; font-size: 2.2rem; line-height: 1; letter-spacing: -0.03em;
+}
+.rv-dash {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 300; font-size: 1.4rem;
+color: var(–border2); padding: 0 10px;
+}
+.rv-body {
+padding: 12px 14px;
+font-size: 0.82rem; line-height: 1.65; color: var(–muted2);
+}
+.rv-body strong { color: var(–text); }
+.rv-body em { color: var(–pick); font-style: normal; }
+.rv-condition {
+display: inline-flex; align-items: center; gap: 5px;
+background: #1a0a00; border: 1px solid #5a2a00;
+border-radius: 4px; padding: 4px 8px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 0.65rem; font-weight: 700;
+color: var(–orange); text-transform: uppercase; letter-spacing: 0.06em;
+margin-bottom: 10px; display: block;
+}
+
+/* ── ANALYSIS ── */
+.analysis {
+background: var(–card);
+border: 1px solid var(–border);
+border-left: 3px solid var(–gold);
+border-radius: 10px;
+padding: 14px;
+font-size: 0.84rem;
+line-height: 1.65;
+color: var(–muted2);
+margin-bottom: 10px;
+}
+.analysis h3 {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-weight: 800; font-size: 0.95rem;
+text-transform: uppercase; letter-spacing: 0.1em;
+color: var(–gold2); margin-bottom: 10px;
+}
+.analysis p { margin-bottom: 8px; }
+.analysis p:last-child { margin-bottom: 0; }
+.analysis strong { color: var(–text); }
+.analysis em { color: var(–pick); font-style: normal; }
+
+/* ── PAGE CONTENT ── */
+.page-content { padding: 12px 12px 40px; }
+
+/* ── LEGEND ── */
+.legend {
+display: flex; gap: 12px; flex-wrap: wrap;
+padding: 8px 12px; border-bottom: 1px solid var(–border);
+background: #090d17;
+}
+.leg { display:flex; align-items:center; gap:5px; font-size:0.68rem; color:var(–muted2); }
+.leg-dot { width:8px; height:8px; border-radius:2px; flex-shrink:0; }
+</style>
+
+</head>
+<body>
+
+<!-- INSTALL BANNER -->
+
+<div class="install-banner" id="installBanner">
+  <span class="ib-icon">📲</span>
+  <div class="ib-text">
+    <strong>Save as app</strong><br>
+    <span class="ib-steps">Tap Share ↑ → Add to Home Screen</span>
+  </div>
+  <button class="ib-close" id="ibClose">DISMISS</button>
+</div>
+
+<!-- HEADER -->
+
+<div class="header">
+  <div class="logo">BIG <span>TEN</span></div>
+  <div class="header-info">
+    <h1>MBB Tournament 2026</h1>
+    <p>United Center · Chicago · Mar 10–15</p>
+  </div>
+  <div class="odds-tag">📊 Odds<br>+ Favs</div>
+</div>
+
+<!-- LIVE BAR -->
+
+<div class="live-bar">
+  <div class="live-pill">
+    <div class="live-dot"></div>
+    <span class="live-pill-text">Live</span>
+  </div>
+  <div class="ticker-track">
+    <div class="ticker-inner" id="tickerInner">
+      <span class="ticker-game"><span class="tg-label">Loading scores...</span></span>
+    </div>
+  </div>
+  <button class="refresh-btn" id="refreshBtn">⟳</button>
+  <span class="last-update" id="lastUpdate">–</span>
+</div>
+
+<!-- FUTURES -->
+
+<div class="futures-bar" id="futuresBar">
+  <span class="futures-label">🏆 Title:</span>
+  <!-- Rendered by JS via renderFutures() -->
+</div>
+
+<!-- LEGEND -->
+
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:var(--green)"></div> Final</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--orange)"></div> 🔴 Today</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--sky)"></div> Upcoming</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--pick);border-radius:50%"></div> ★ My fav</div>
+</div>
+
+<!-- ROUND TABS -->
+
+<div class="round-tabs" id="roundTabs">
+  <button class="round-tab" data-panel="r1">1st Rd<span class="tab-date">Tue Mar 10</span></button>
+  <button class="round-tab" data-panel="r2">2nd Rd<span class="tab-date">Wed Mar 11</span></button>
+  <button class="round-tab active" data-panel="r3">3rd Rd<span class="tab-date tab-live">🔴 TODAY</span></button>
+  <button class="round-tab" data-panel="r4">QF<span class="tab-date">Fri Mar 13</span></button>
+  <button class="round-tab" data-panel="r5">Semis<span class="tab-date">Sat Mar 14</span></button>
+  <button class="round-tab" data-panel="r6">🏆 Final<span class="tab-date">Sun Mar 15</span></button>
+</div>
+
+<!-- PAGE CONTENT -->
+
+<div class="page-content">
+
+<!-- ══ FIRST ROUND ══ -->
+
+<div class="round-panel" id="r1">
+  <div class="round-section-hdr">
+    <span class="rsh-label">First Round</span>
+    <span class="rsh-date">Tue Mar 10</span>
+    <span class="rsh-net net-peacock">Peacock</span>
+  </div>
+
+  <div class="gc final">
+    <div class="gc-top"><span class="gc-num">G1</span><span class="gc-status st-final">Final</span><div class="gc-spacer"></div><span class="ch-pill cp-peacock">Peacock 5PM</span></div>
+    <div class="gc-body">
+      <div class="team-row l"><span class="seed">16</span><span class="tname strk">Oregon</span><span class="score-val l">60</span></div>
+      <hr class="div-line">
+      <div class="team-row w"><span class="seed">17</span><span class="tname">Maryland ✓</span><span class="score-val w">70</span></div>
+    </div>
+  </div>
+
+  <div class="gc final">
+    <div class="gc-top"><span class="gc-num">G2</span><span class="gc-status st-final">Final</span><div class="gc-spacer"></div><span class="ch-pill cp-peacock">Peacock 7:30PM</span></div>
+    <div class="gc-body">
+      <div class="team-row w"><span class="seed">15</span><span class="tname">N'western ✓</span><span class="score-val w">76</span></div>
+      <hr class="div-line">
+      <div class="team-row l"><span class="seed">18</span><span class="tname strk">Penn State</span><span class="score-val l">66</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECOND ROUND ══ -->
+
+<div class="round-panel" id="r2">
+  <div class="round-section-hdr">
+    <span class="rsh-label">Second Round</span>
+    <span class="rsh-date">Wed Mar 11</span>
+    <span class="rsh-net net-multi">Peacock / BTN</span>
+  </div>
+
+  <div class="gc final">
+    <div class="gc-top"><span class="gc-num">G3</span><span class="gc-status st-final">Final</span><div class="gc-spacer"></div><span class="ch-pill cp-peacock">Peacock Noon</span></div>
+    <div class="gc-body">
+      <div class="team-row w"><span class="seed">9</span><span class="tname">Iowa ✓</span><span class="score-val w">75</span></div>
+      <hr class="div-line">
+      <div class="team-row l"><span class="seed">17</span><span class="tname strk">Maryland</span><span class="score-val l">64</span></div>
+    </div>
+  </div>
+
+  <div class="gc final">
+    <div class="gc-top"><span class="gc-num">G4</span><span class="gc-status st-final">Final (OT)</span><div class="gc-spacer"></div><span class="ch-pill cp-peacock">Peacock 2:30PM</span></div>
+    <div class="gc-body">
+      <div class="team-row w"><span class="seed">12</span><span class="tname">Washington ✓</span><span class="score-val w">83</span></div>
+      <hr class="div-line">
+      <div class="team-row l"><span class="seed">13</span><span class="tname strk">USC</span><span class="score-val l">79</span></div>
+    </div>
+  </div>
+
+  <div class="gc final">
+    <div class="gc-top"><span class="gc-num">G5</span><span class="gc-status st-final">Final</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN 6:30PM</span></div>
+    <div class="gc-body">
+      <div class="team-row l"><span class="seed">10</span><span class="tname strk">Indiana</span><span class="score-val l">61</span></div>
+      <hr class="div-line">
+      <div class="team-row w"><span class="seed">15</span><span class="tname">N'western ✓</span><span class="score-val w">74</span></div>
+    </div>
+  </div>
+
+  <div class="gc final">
+    <div class="gc-top"><span class="gc-num">G6</span><span class="gc-status st-final">Final</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN 9PM</span></div>
+    <div class="gc-body">
+      <div class="team-row l"><span class="seed">11</span><span class="tname strk">Minnesota</span><span class="score-val l">67</span></div>
+      <hr class="div-line">
+      <div class="team-row w"><span class="seed">14</span><span class="tname">Rutgers ✓</span><span class="score-val w">72</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ THIRD ROUND – TODAY ══ -->
+
+<div class="round-panel active" id="r3">
+  <div class="round-section-hdr">
+    <span class="rsh-label">🔴 Third Round</span>
+    <span class="rsh-date">Thu Mar 12</span>
+    <span class="rsh-net net-btn">BTN</span>
+  </div>
+
+  <div class="gc final" id="card-g7">
+    <div class="gc-top"><span class="gc-num">G7</span><span class="gc-status st-final" id="lso-g7-period">FINAL</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN · Noon ET</span></div>
+    <div class="sb-body">
+      <div class="sb-row" id="sb-g7-home"><span class="sb-seed">8</span><span class="sb-team">Ohio State ★fav ✓</span><span class="sb-score leading" id="lso-g7-s1">72</span></div>
+      <hr class="div-line">
+      <div class="sb-row" id="sb-g7-away"><span class="sb-seed" style="opacity:0.45">9</span><span class="sb-team" style="opacity:0.45">Iowa</span><span class="sb-score trailing" id="lso-g7-s2">69</span></div>
+    </div>
+    <div class="sb-footer"><span class="sb-spread">OSU -1.5 · O/U 139.5</span><span class="sb-pick-tag">Fav: Ohio St ✓</span></div>
+  </div>
+
+  <div class="gc today" id="card-g8">
+    <div class="gc-top"><span class="gc-num">G8</span><span class="gc-status st-today" id="lso-g8-period">TODAY</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN · ~2:30PM ET</span></div>
+    <div class="sb-body">
+      <div class="sb-row sb-pick" id="sb-g8-home"><span class="sb-seed">5</span><span class="sb-team">★ Wisconsin</span><span class="sb-score" id="lso-g8-s1">–</span></div>
+      <hr class="div-line">
+      <div class="sb-row" id="sb-g8-away"><span class="sb-seed">12</span><span class="sb-team">Washington</span><span class="sb-score" id="lso-g8-s2">–</span></div>
+    </div>
+    <div class="sb-footer"><span class="sb-spread">Wis ~-9 · +2500 title odds</span><span class="sb-pick-tag">Fav: Wisconsin</span></div>
+  </div>
+
+  <div class="gc today" id="card-g9">
+    <div class="gc-top"><span class="gc-num">G9</span><span class="gc-status st-today" id="lso-g9-period">TODAY</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN · 6:30PM ET</span></div>
+    <div class="sb-body">
+      <div class="sb-row sb-pick" id="sb-g9-home"><span class="sb-seed">7</span><span class="sb-team">★ Purdue</span><span class="sb-score" id="lso-g9-s1">–</span></div>
+      <hr class="div-line">
+      <div class="sb-row" id="sb-g9-away"><span class="sb-seed">15</span><span class="sb-team">N'western 👸</span><span class="sb-score" id="lso-g9-s2">–</span></div>
+    </div>
+    <div class="sb-footer"><span class="sb-spread">Purdue ~-7 · NW Cinderella</span><span class="sb-pick-tag">Fav: Purdue</span></div>
+  </div>
+
+  <div class="gc today" id="card-g10">
+    <div class="gc-top"><span class="gc-num">G10</span><span class="gc-status st-today" id="lso-g10-period">TODAY</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN · ~9PM ET</span></div>
+    <div class="sb-body">
+      <div class="sb-row sb-pick" id="sb-g10-home"><span class="sb-seed">6</span><span class="sb-team">★ UCLA</span><span class="sb-score" id="lso-g10-s1">–</span></div>
+      <hr class="div-line">
+      <div class="sb-row" id="sb-g10-away"><span class="sb-seed">14</span><span class="sb-team">Rutgers</span><span class="sb-score" id="lso-g10-s2">–</span></div>
+    </div>
+    <div class="sb-footer"><span class="sb-spread">UCLA ~-8</span><span class="sb-pick-tag">Fav: UCLA</span></div>
+  </div>
+</div>
+
+<!-- ══ QUARTERFINALS ══ -->
+
+<div class="round-panel" id="r4">
+  <div class="round-section-hdr">
+    <span class="rsh-label">Quarterfinals</span>
+    <span class="rsh-date">Fri Mar 13</span>
+    <span class="rsh-net net-btn">BTN</span>
+  </div>
+
+  <div class="gc upcoming">
+    <div class="gc-top"><span class="gc-num">G11</span><span class="gc-status st-up">Fri Noon ET</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN</span></div>
+    <div class="gc-body">
+      <div class="team-row pick-team"><span class="seed">1</span><span class="tname">★ Michigan</span></div>
+      <hr class="div-line">
+      <div class="team-row" id="g11-slot"><span class="seed" id="g11-seed">8</span><span class="tname" id="g11-team">Ohio State ✓</span></div>
+    </div>
+    <div class="odds-row"><span class="odds-lbl">Proj:</span><span class="odds-val ov-fav">Mich ~-12</span><span class="ou-tag">Fav: <strong style="color:var(--pick)">Michigan</strong></span></div>
+  </div>
+
+  <div class="gc upcoming">
+    <div class="gc-top"><span class="gc-num">G12</span><span class="gc-status st-up">Fri ~2:30PM ET</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN</span></div>
+    <div class="gc-body">
+      <div class="team-row pick-team"><span class="seed">4</span><span class="tname">★ Illinois</span></div>
+      <hr class="div-line">
+      <div class="team-row" id="g12-slot"><span class="seed" id="g12-seed">5</span><span class="tname" id="g12-team">Wisconsin <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+    </div>
+    <div class="odds-row"><span class="odds-lbl">Proj:</span><span class="odds-val ov-fav">Ill ~-4</span><span class="odds-team">&nbsp;· #1 KenPom O-eff</span><span id="g12-spread" class="ou-tag">Fav: <strong style="color:var(--pick)">Illinois</strong></span></div>
+  </div>
+
+  <div class="gc upcoming">
+    <div class="gc-top"><span class="gc-num">G13</span><span class="gc-status st-up">Fri 6:30PM ET</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN</span></div>
+    <div class="gc-body">
+      <div class="team-row pick-team"><span class="seed">2</span><span class="tname">★ Nebraska</span></div>
+      <hr class="div-line">
+      <div class="team-row" id="g13-slot"><span class="seed" id="g13-seed">7</span><span class="tname" id="g13-team">Purdue <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+    </div>
+    <div class="odds-row"><span class="odds-lbl">Proj:</span><span class="odds-val ov-fav">Neb ~-3</span><span class="odds-team">&nbsp;· Purdue won in Lincoln</span><span id="g13-spread" class="ou-tag">Fav: <strong style="color:var(--pick)">Nebraska</strong></span></div>
+  </div>
+
+  <div class="gc upcoming">
+    <div class="gc-top"><span class="gc-num">G14</span><span class="gc-status st-up">Fri ~9PM ET</span><div class="gc-spacer"></div><span class="ch-pill cp-btn">BTN</span></div>
+    <div class="gc-body">
+      <div class="team-row pick-team"><span class="seed">3</span><span class="tname">★ Mich State</span></div>
+      <hr class="div-line">
+      <div class="team-row" id="g14-slot"><span class="seed" id="g14-seed">6</span><span class="tname" id="g14-team">UCLA <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+    </div>
+    <div class="odds-row"><span class="odds-lbl">Proj:</span><span class="odds-val ov-fav">MSU ~-6</span><span class="odds-team">&nbsp;· Izzo late-season surge</span><span id="g14-spread" class="ou-tag">Fav: <strong style="color:var(--pick)">Mich St</strong></span></div>
+  </div>
+</div>
+
+<!-- ══ SEMIS ══ -->
+
+<div class="round-panel" id="r5">
+  <div class="round-section-hdr">
+    <span class="rsh-label">Semifinals</span>
+    <span class="rsh-date">Sat Mar 14</span>
+    <span class="rsh-net net-cbs">CBS</span>
+  </div>
+
+  <div class="gc tbd">
+    <div class="gc-top"><span class="gc-num">G15</span><span class="gc-status" style="color:var(--muted2)">Sat 1PM ET</span><div class="gc-spacer"></div><span class="ch-pill cp-cbs">CBS</span></div>
+    <div class="gc-body">
+      <div class="team-row pick-team"><span class="seed">1</span><span class="tname">★ Michigan <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+      <hr class="div-line">
+      <div class="team-row" id="g15-slot"><span class="seed" id="g15-seed">4</span><span class="tname" id="g15-team">Illinois <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+    </div>
+    <div class="odds-row"><span class="odds-lbl">Proj:</span><span class="odds-val ov-fav">Mich ~-5</span><span class="ou-tag">Fav: <strong style="color:var(--pick)">Michigan</strong></span></div>
+  </div>
+
+  <div class="gc tbd">
+    <div class="gc-top"><span class="gc-num">G16</span><span class="gc-status" style="color:var(--muted2)">Sat ~3:30PM ET</span><div class="gc-spacer"></div><span class="ch-pill cp-cbs">CBS</span></div>
+    <div class="gc-body">
+      <div class="team-row pick-team"><span class="seed">3</span><span class="tname">★ Mich State <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+      <hr class="div-line">
+      <div class="team-row" id="g16-slot"><span class="seed" id="g16-seed">2</span><span class="tname" id="g16-team">Nebraska <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+    </div>
+    <div class="odds-row"><span class="odds-lbl">Proj:</span><span class="odds-val ov-fav">MSU ~-4</span><span class="ou-tag">Fav: <strong style="color:var(--pick)">Mich St</strong></span></div>
+  </div>
+</div>
+
+<!-- ══ CHAMPIONSHIP ══ -->
+
+<div class="round-panel" id="r6">
+  <div class="round-section-hdr">
+    <span class="rsh-label">Championship</span>
+    <span class="rsh-date">Sun Mar 15</span>
+    <span class="rsh-net net-cbs">CBS 3:30PM</span>
+  </div>
+
+  <div class="champ-card">
+    <span class="champ-icon">🏆</span>
+    <div class="champ-lbl">B10 Champion — My Fav</div>
+    <div class="champ-name">Michigan</div>
+    <div class="champ-badge">★ -105 to win title</div>
+    <div class="champ-sub">
+      <strong>SUN MAR 15 · 3:30PM ET</strong>
+      CBS · United Center<br>
+      vs. Mich State (proj.)<br>
+      <span style="color:var(--gold2);font-weight:700;">29-2 · Best scoring margin in B10</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RIVALRY CARD ══ -->
+
+<div class="rivalry-card" id="rivalryCard">
+  <div class="rivalry-header">
+    <h3>🏟️ The Rivalry — Michigan vs. Northwestern</h3>
+    <span class="rivalry-prob">~14% chance this matchup happens</span>
+  </div>
+  <div class="rivalry-teams">
+    <div class="rv-team-block">
+      <span class="rv-school" style="color:#FFCB05;">Michigan</span>
+      <span class="rv-colors">〽️ Maize &amp; Blue</span>
+      <span class="rv-info">#1 seed · -105 title</span>
+    </div>
+    <div class="rv-center">
+      <span class="rv-vs-text">VS</span>
+      <span class="rv-game-lbl">G15 · Sat Mar 14<br>1PM ET · CBS<br>If NW wins G9 + G13</span>
+    </div>
+    <div class="rv-team-block right">
+      <span class="rv-school" style="color:#836EAA;">Northwestern</span>
+      <span class="rv-colors">💜 Purple &amp; White</span>
+      <span class="rv-info">#15 seed · +35000</span>
+    </div>
+  </div>
+  <div class="rv-score-row">
+    <div class="rv-score-block">
+      <div class="rv-score-lbl">Michigan (proj.)</div>
+      <div class="rv-score-num" style="color:#FFCB05;">79</div>
+    </div>
+    <span class="rv-dash">–</span>
+    <div class="rv-score-block right">
+      <div class="rv-score-lbl">Northwestern (proj.)</div>
+      <div class="rv-score-num" style="color:#836EAA;">61</div>
+    </div>
+  </div>
+  <div class="rv-body">
+    <span class="rv-condition">⚠ NW must beat Purdue (G9 tonight) then Nebraska (G13 Fri) to reach Michigan in G15</span>
+    <p>Northwestern has been the Cinderella 👸 of this tournament — beating Penn State and Indiana as a <strong>#15 seed</strong>. But Michigan is a different level entirely.</p>
+    <p>The Wolverines are <em>~-19</em> projected favorites. They average <strong>88.4 ppg</strong> and allow only <strong>68.7</strong> — the best margin in the conference. <strong>Projected spread: Michigan -18.5.</strong> Northwestern would need the biggest upset in B10 tournament history.</p>
+  </div>
+</div>
+
+<!-- ══ ANALYSIS ══ -->
+
+<div class="analysis">
+  <h3>📋 Bracket Analysis</h3>
+  <p><strong>Michigan wins it:</strong> At <em>-105</em>, the Wolverines are the obvious favorite. 29-2, top-5 nationally in both offensive and defensive efficiency. Yaxel Lendeborg is a legit Player of the Year candidate. Nearly impossible to beat at a neutral site.</p>
+  <p><strong>Best semi storyline:</strong> Michigan vs Michigan State final. MSU won 5 of last 6 to end the season and get <em>+550</em> — best value if you want an alternate champion.</p>
+  <p><strong>Today's upset watch:</strong> <em>Northwestern 👸 (+35000)</em> already knocked off Penn State AND Indiana as a #15 seed. Purdue barely beat them by 4 in Evanston. Expect a close G9 tonight. <strong>Fav: Purdue, but the spread is far from safe.</strong></p>
+  <p><strong>G13 upset watch:</strong> Purdue over Nebraska. Market only gives Nebraska the 5th-best odds despite being the #2 seed. Purdue won in Lincoln in the regular season. Braden Smith (NCAA all-time assists leader) makes them dangerous.</p>
+  <p><strong>Sleeper:</strong> Wisconsin at <em>+2500</em> — the only team to hand Michigan a loss, in Ann Arbor. They'd need to get through Illinois first, which is a tall order.</p>
+</div>
+
+</div><!-- page-content -->
+
+<script>
+// ── TABS ─────────────────────────────────────────────────────────────────────
+document.getElementById('roundTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.round-tab');
+  if (!tab) return;
+  document.querySelectorAll('.round-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.round-panel').forEach(p => p.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById(tab.dataset.panel).classList.add('active');
+});
+
+// ── INSTALL BANNER ────────────────────────────────────────────────────────────
+(function() {
+  const isStandalone = window.navigator.standalone === true;
+  const isDismissed  = sessionStorage.getItem('b10-dismissed');
+  const isSafari     = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+  if (!isStandalone && !isDismissed && isSafari) {
+    document.getElementById('installBanner').classList.add('show');
+  }
+  document.getElementById('ibClose').addEventListener('click', () => {
+    document.getElementById('installBanner').style.display = 'none';
+    sessionStorage.setItem('b10-dismissed', '1');
+  });
+})();
+
+// ── GAME DATA ─────────────────────────────────────────────────────────────────
+// ── TIMEZONE CONVERSION ───────────────────────────────────────────────────────
+// All times stored as ET (UTC-4 during DST). Convert to user's local tz on load.
+// Returns e.g. "Noon ET" → "11AM CT" or "9AM PT" depending on browser tz.
+
+function etToLocal(label, etHour, etMin = 0) {
+  const approx = label.startsWith('~');
+  try {
+    // Build a Date for today at the given ET time (ET = UTC-4 in March)
+    const d = new Date();
+    d.setUTCHours(etHour + 4, etMin, 0, 0); // ET is UTC-4 in DST
+    const localTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    // Get user's offset from ET
+    const etOffset  = -4 * 60; // ET in March (EDT)
+    const localDate = new Date(d);
+    const localStr  = localDate.toLocaleTimeString('en-US', {
+      hour: 'numeric', minute: etMin ? '2-digit' : undefined,
+      hour12: true, timeZone: localTZ
+    });
+
+    // Get tz abbreviation
+    const tzAbbr = localDate.toLocaleTimeString('en-US', {
+      timeZoneName: 'short', timeZone: localTZ
+    }).split(' ').pop();
+
+    // If user is already in ET, just return the label as-is
+    const isSameAsET = tzAbbr === 'EDT' || tzAbbr === 'ET' || localTZ.includes('New_York');
+    if (isSameAsET) return (approx ? '~' : '') + label.replace('~','');
+
+    return (approx ? '~' : '') + localStr.replace(':00','').replace(' ','') + ' ' + tzAbbr;
+  } catch(e) {
+    return label; // fallback
+  }
+}
+
+// Game times: [label, etHour, etMin]
+const GAME_TIMES = {
+  g7:  ['Noon ET',     12, 0 ],
+  g8:  ['~2:30PM ET',  14, 30],
+  g9:  ['6:30PM ET',   18, 30],
+  g10: ['~9PM ET',     21, 0 ],
+  g11: ['Noon ET',     12, 0 ],
+  g12: ['~2:30PM ET',  14, 30],
+  g13: ['6:30PM ET',   18, 30],
+  g14: ['~9PM ET',     21, 0 ],
+  g15: ['1PM ET',      13, 0 ],
+  g16: ['~3:30PM ET',  15, 30],
+  g17: ['3:30PM ET',   15, 30],
+};
+
+function localTime(gameId) {
+  const t = GAME_TIMES[gameId];
+  return t ? etToLocal(t[0], t[1], t[2]) : '';
+}
+
+// Inject converted times into all gc-top and status elements
+function applyLocalTimes() {
+  const map = {
+    'Noon ET':    localTime('g7'),
+    '~2:30PM ET': localTime('g8'),
+    '6:30PM ET':  localTime('g9'),
+    '~9PM ET':    localTime('g10'),
+    '1PM ET':     localTime('g15'),
+    '~3:30PM ET': localTime('g16'),
+    '3:30PM ET':  localTime('g17'),
+  };
+
+  // Walk all text nodes and replace ET time strings
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(node => {
+    let t = node.textContent;
+    let changed = false;
+    for (const [et, local] of Object.entries(map)) {
+      if (t.includes(et)) { t = t.replaceAll(et, local); changed = true; }
+    }
+    if (changed) node.textContent = t;
+  });
+
+  // Also update tipoff strings in GAMES array
+  GAMES.forEach(g => {
+    const t = GAME_TIMES[g.id];
+    if (t) g.tipoff = etToLocal(t[0], t[1], t[2]);
+  });
+}
+
+
+const GAMES = [
+  { id:'g7',  homeName:'Ohio State', awayName:'Iowa',       homeKey:'OSU',  awayKey:'IOWA',
+    home_score:0, away_score:0, period:'', clock:'', status:'loading', tipoff:'Noon ET' },
+  { id:'g8',  homeName:'Wisconsin',  awayName:'Washington', homeKey:'WIS',  awayKey:'WASH',
+    home_score:0, away_score:0, period:'', clock:'', status:'loading', tipoff:'~2:30PM ET' },
+  { id:'g9',  homeName:'Purdue',     awayName:'N\'western', homeKey:'PUR',  awayKey:'NW',
+    home_score:0, away_score:0, period:'', clock:'', status:'loading', tipoff:'6:30PM ET' },
+  { id:'g10', homeName:'UCLA',       awayName:'Rutgers',    homeKey:'UCLA', awayKey:'RUTG',
+    home_score:0, away_score:0, period:'', clock:'', status:'loading', tipoff:'~9PM ET' },
+];
+
+
+const POLL_MS = 30000;
+let pollTimer = null;
+let fetchedOk = false;
+
+const ESPN_BASE = 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&dates=20260312';
+
+// ESPN team name fragments for robust matching (lowercase)
+const TEAM_MATCH = {
+  g7:  { home: ['ohio state', 'ohio st'],        away: ['iowa'] },
+  g8:  { home: ['wisconsin'],                     away: ['washington'] },
+  g9:  { home: ['purdue'],                        away: ['northwestern', "n'western", 'nw'] },
+  g10: { home: ['ucla', 'los angeles'],           away: ['rutgers'] },
+};
+
+function matchTeam(espnTeam, fragments) {
+  const name = (espnTeam.team?.displayName || espnTeam.team?.name || espnTeam.team?.shortDisplayName || '').toLowerCase();
+  const abbr = (espnTeam.team?.abbreviation || '').toLowerCase();
+  return fragments.some(f => name.includes(f) || abbr === f);
+}
+
+async function tryFetch(url) {
+  const proxies = [
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+  ];
+
+  // Race all proxies simultaneously — fastest valid response wins
+  const attempts = proxies.map(async proxyUrl => {
+    const resp = await fetch(proxyUrl, { cache: 'no-store' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const text = await resp.text();
+    const data = JSON.parse(text);
+    if (!data.events) throw new Error('No events');
+    return data;
+  });
+
+  return Promise.any(attempts); // resolves with first success, rejects only if ALL fail
+}
+
+async function fetchLiveScores() {
+  const btn = document.getElementById('refreshBtn');
+  btn.textContent = '↻'; btn.style.opacity = '0.5';
+  try {
+    const data = await tryFetch(ESPN_BASE);
+    if (!data) throw new Error('All proxies failed');
+    const events = data.events || [];
+
+    GAMES.forEach(cfg => {
+      const matchers = TEAM_MATCH[cfg.id];
+      const ev = events.find(e => {
+        const comps = e.competitions?.[0]?.competitors || [];
+        if (comps.length < 2) return false;
+        const hasHome = comps.some(c => matchTeam(c, matchers.home));
+        const hasAway = comps.some(c => matchTeam(c, matchers.away));
+        return hasHome && hasAway;
+      });
+
+      if (!ev) {
+        console.warn(`[bracket] ${cfg.id} not found. ESPN events:`,
+          events.map(e => e.name || e.shortName).join(' | '));
+        return;
+      }
+
+      const comp  = ev.competitions[0];
+      const comps = comp.competitors;
+      const homeC = comps.find(c => matchTeam(c, matchers.home)) || comps[0];
+      const awayC = comps.find(c => matchTeam(c, matchers.away)) || comps[1];
+
+      // Debug: log raw status for every game so we can see what ESPN sends
+      const rawStatus = ev.status?.type;
+      console.log(`[bracket] ${cfg.id} ESPN status:`, rawStatus?.id, rawStatus?.name, rawStatus?.description, '| scores:', homeC?.score, awayC?.score);
+
+      cfg.home_score = parseInt(homeC?.score ?? cfg.home_score, 10) || 0;
+      cfg.away_score = parseInt(awayC?.score ?? cfg.away_score, 10) || 0;
+
+      const stateId = ev.status?.type?.id;
+      const stateName = (ev.status?.type?.name || '').toLowerCase();
+      const clock   = comp.status?.displayClock || '';
+      const period  = comp.status?.period || 0;
+
+      if (stateId === '3' || stateName.includes('final')) {
+        cfg.status = 'final'; cfg.period = 'Final'; cfg.clock = '';
+      } else if (stateId === '2' || stateName.includes('in') || stateName.includes('progress') || stateName.includes('half')) {
+        cfg.status = 'in_progress';
+        cfg.period = period <= 1 ? '1st Half' : '2nd Half';
+        cfg.clock  = clock;
+      } else if (stateId === '4' || stateName.includes('halftime')) {
+        cfg.status = 'halftime'; cfg.period = 'Half'; cfg.clock = '';
+      } else {
+        cfg.status = 'pre_game'; cfg.period = 'Pre'; cfg.clock = '';
+      }
+    });
+
+    fetchedOk = true;
+    const t = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    document.getElementById('lastUpdate').textContent = 'Live · ' + t;
+  } catch (e) {
+    console.warn('Score fetch:', e.message);
+    const t = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    document.getElementById('lastUpdate').textContent = fetchedOk ? 'Cached · ' + t : 'Offline';
+  } finally {
+    btn.textContent = '⟳'; btn.style.opacity = '';
+    renderScores();
+  }
+}
+
+function renderScores() {
+  const ticks = [];
+  GAMES.forEach(g => {
+    const s1  = document.getElementById('lso-' + g.id + '-s1');
+    const s2  = document.getElementById('lso-' + g.id + '-s2');
+    const per = document.getElementById('lso-' + g.id + '-period');
+    const hr  = document.getElementById('sb-' + g.id + '-home');
+    const ar  = document.getElementById('sb-' + g.id + '-away');
+
+    const loading = g.status === 'loading';
+    const pre  = g.status === 'pre_game';
+    const live = g.status === 'in_progress';
+    const half = g.status === 'halftime';
+    const fin  = g.status === 'final';
+
+    if (loading) {
+      if (s1) { s1.textContent = ''; s1.className = 'sb-score pre'; }
+      if (s2) { s2.textContent = ''; s2.className = 'sb-score pre'; }
+      if (hr) hr.style.opacity = '1';
+      if (ar) ar.style.opacity = '1';
+      const pel = document.getElementById('lso-' + g.id + '-period');
+      if (pel) { pel.textContent = '…'; pel.className = 'gc-status'; }
+      return;
+    }
+
+    if (s1) { s1.textContent = pre ? '–' : g.home_score; s1.className = 'sb-score ' + (pre ? 'pre' : g.home_score > g.away_score ? 'leading' : 'trailing'); }
+    if (s2) { s2.textContent = pre ? '–' : g.away_score; s2.className = 'sb-score ' + (pre ? 'pre' : g.away_score > g.home_score ? 'leading' : 'trailing'); }
+    if (!pre && hr && ar) {
+      hr.style.opacity = g.home_score >= g.away_score ? '1' : '0.45';
+      ar.style.opacity = g.away_score >= g.home_score ? '1' : '0.45';
+    }
+
+    let pt, pc;
+    if (pre)       { pt = g.tipoff;                                      pc = 'gc-status st-up'; }
+    else if (fin)  { pt = 'FINAL';                                       pc = 'gc-status st-final-label'; }
+    else if (half) { pt = 'HALFTIME';                                    pc = 'gc-status st-live-active'; }
+    else           { pt = g.period + (g.clock ? ' · ' + g.clock : '');  pc = 'gc-status st-live-active'; }
+    if (per) { per.textContent = pt; per.className = pc; }
+
+    const hc = (!pre && g.home_score >= g.away_score) ? 'var(--green)' : 'var(--text)';
+    const ac = (!pre && g.away_score  >  g.home_score) ? 'var(--green)' : 'var(--text)';
+    const sc = live||half ? 'tg-live' : fin ? 'tg-final' : 'tg-pre';
+    const scoreStr = pre
+      ? `<span class="tg-score" style="color:var(--muted)">TBD</span>`
+      : `<span class="tg-score" style="color:${hc}">${g.home_score}</span><span style="color:var(--muted);font-size:0.7rem;font-family:'Barlow Condensed',sans-serif"> – </span><span class="tg-score" style="color:${ac}">${g.away_score}</span>`;
+    ticks.push(`<span class="ticker-game"><span class="tg-label">G${g.id.replace('g','')} · ${g.homeName} vs ${g.awayName}</span>${scoreStr}<span class="tg-period ${sc}">${pt}</span></span>`);
+  });
+
+  const inner = document.getElementById('tickerInner');
+  const h = ticks.join('');
+  inner.innerHTML = h + h;
+
+  // Hide rivalry card if Purdue won G9
+  const g9 = GAMES.find(g => g.id === 'g9');
+  const rc  = document.getElementById('rivalryCard');
+  if (rc && g9) rc.style.display = (g9.status === 'final' && g9.home_score > g9.away_score) ? 'none' : '';
+
+  updateBracket();
+  renderFutures();
+  renderQFSpreads();
+}
+
+// ── ODDS PROGRESSION ─────────────────────────────────────────────────────────
+// Pre-calculated realistic futures after each round outcome.
+// Key format: comma-sorted list of winners by game ID e.g. "g8:WIS,g9:PUR,g10:UCLA"
+// Base odds = before today's games finish (OSU already won G7)
+
+const TEAMS = {
+  Michigan:    { seed:1,  abbr:'Mich'    },
+  Illinois:    { seed:4,  abbr:'Ill'     },
+  'Mich St':   { seed:3,  abbr:'MSU'     },
+  Nebraska:    { seed:2,  abbr:'Neb'     },
+  'Ohio St':   { seed:8,  abbr:'OSU'     },
+  Wisconsin:   { seed:5,  abbr:'Wis'     },
+  Purdue:      { seed:7,  abbr:'Pur'     },
+  UCLA:        { seed:6,  abbr:'UCLA'    },
+  Washington:  { seed:12, abbr:'Wash'    },
+  Rutgers:     { seed:14, abbr:'Rutg'    },
+  Northwestern:{ seed:15, abbr:'NW'      },
+};
+
+// Base: after G7 final (OSU beat Iowa). G8/G9/G10 pending.
+const BASE_ODDS = {
+  Michigan:    -105,
+  Illinois:    390,
+  'Mich St':   550,
+  Nebraska:    1100,
+  'Ohio St':   800,   // bumped slightly after win
+  Wisconsin:   2500,
+  Purdue:      850,
+  UCLA:        3000,
+  Washington:  12000,
+  Rutgers:     18000,
+  Northwestern:35000,
+};
+
+// QF spreads by matchup (home=top seed always)
+const QF_SPREADS = {
+  g11: { base: -12, upset: null },  // Michigan vs G7 winner
+  g12: { base: -4,  upset: null },  // Illinois vs G8 winner
+  g13: { base: -3,  upset: null },  // Nebraska vs G9 winner
+  g14: { base: -6,  upset: null },  // MSU vs G10 winner
+};
+
+// Odds shift when an upset wins — multiplier applied to winner, losers removed
+const UPSET_BOOST = {
+  // If Washington beats Wisconsin (G8 upset)
+  Washington:  { newOdds: 8000,  g12spread: +4  },
+  // If Northwestern beats Purdue (G9 upset)
+  Northwestern:{ newOdds: 15000, g13spread: +8  },
+  // If Rutgers beats UCLA (G10 upset)
+  Rutgers:     { newOdds: 12000, g14spread: +5  },
+};
+
+let currentOdds   = { ...BASE_ODDS };
+let currentSpreads = { ...QF_SPREADS };
+let eliminatedTeams = new Set(['Iowa', 'Maryland', 'Oregon', 'Penn State',
+  'Indiana', 'USC', 'Minnesota']);  // already out
+
+function getWinnerName(game) {
+  if (game.status !== 'final') return null;
+  if (game.home_score > game.away_score) return game.homeName;
+  return game.awayName;
+}
+function getLoserName(game) {
+  if (game.status !== 'final') return null;
+  if (game.home_score > game.away_score) return game.awayName;
+  return game.homeName;
+}
+
+function recalcOdds() {
+  const g8  = GAMES.find(g => g.id === 'g8');
+  const g9  = GAMES.find(g => g.id === 'g9');
+  const g10 = GAMES.find(g => g.id === 'g10');
+
+  // Reset to base each recalc, then apply results
+  currentOdds    = { ...BASE_ODDS };
+  currentSpreads = {
+    g11: { spread: -12 },
+    g12: { spread: -4  },
+    g13: { spread: -3  },
+    g14: { spread: -6  },
+  };
+  const newElim = new Set(['Iowa', 'Maryland', 'Oregon', 'Penn State',
+    'Indiana', 'USC', 'Minnesota']);
+
+  // G8: Wisconsin vs Washington
+  if (g8?.status === 'final') {
+    const loser = getLoserName(g8);
+    newElim.add(loser);
+    if (loser === 'Wisconsin') {
+      // Washington upset — boost Washington, Illinois now bigger fav
+      currentOdds['Washington'] = 8000;
+      delete currentOdds['Wisconsin'];
+      currentOdds['Illinois'] = 320; // Illinois easier path
+      currentSpreads.g12.spread = +4; // Illinois now underdog vs Washington
+    } else {
+      // Wisconsin wins as expected
+      delete currentOdds['Washington'];
+      currentOdds['Wisconsin'] = 2200;
+    }
+  }
+
+  // G9: Purdue vs Northwestern
+  if (g9?.status === 'final') {
+    const loser = getLoserName(g9);
+    newElim.add(loser);
+    if (loser === 'Purdue') {
+      // Northwestern upset
+      currentOdds['Northwestern'] = 15000;
+      delete currentOdds['Purdue'];
+      currentOdds['Nebraska'] = 900; // Nebraska gets easier QF
+      currentSpreads.g13.spread = +8; // Nebraska huge fav over NW
+    } else {
+      delete currentOdds['Northwestern'];
+      currentOdds['Purdue'] = 750;
+    }
+  }
+
+  // G10: UCLA vs Rutgers
+  if (g10?.status === 'final') {
+    const loser = getLoserName(g10);
+    newElim.add(loser);
+    if (loser === 'UCLA') {
+      // Rutgers upset
+      currentOdds['Rutgers'] = 12000;
+      delete currentOdds['UCLA'];
+      currentOdds['Mich St'] = 480; // MSU easier path
+      currentSpreads.g14.spread = +5; // MSU huge fav over Rutgers
+    } else {
+      delete currentOdds['Rutgers'];
+      currentOdds['UCLA'] = 2800;
+    }
+  }
+
+  eliminatedTeams = newElim;
+}
+
+function mlClass(ml) {
+  if (ml < 0)      return 'ml-fav';
+  if (ml <= 600)   return 'ml-mid';
+  return 'ml-long';
+}
+function mlDisplay(ml) {
+  return ml < 0 ? ml.toString() : '+' + ml;
+}
+
+function renderFutures() {
+  recalcOdds();
+  // Sort by implied probability (most likely first)
+  const sorted = Object.entries(currentOdds)
+    .filter(([t]) => !eliminatedTeams.has(t))
+    .sort((a, b) => {
+      const prob = ml => ml < 0 ? (-ml)/(-ml+100) : 100/(ml+100);
+      return prob(b[1]) - prob(a[1]);
+    });
+
+  const bar = document.getElementById('futuresBar');
+  const chips = sorted.map(([team, ml], i) => {
+    const isFav = i === 0;
+    const seed  = TEAMS[team]?.seed ?? '?';
+    return `<div class="futures-chip${isFav ? ' fav' : ''}">
+      <span class="rank">#${seed}</span>
+      <span class="name">${TEAMS[team]?.abbr ?? team}</span>
+      <span class="ml ${mlClass(ml)}">${mlDisplay(ml)}</span>
+    </div>`;
+  }).join('');
+
+  bar.innerHTML = '<span class="futures-label">🏆 Title:</span>' + chips;
+}
+
+// Also update QF spread lines dynamically
+function renderQFSpreads() {
+  const spreadMap = {
+    g12: 'g12-spread',
+    g13: 'g13-spread',
+    g14: 'g14-spread',
+  };
+  // Update spread labels if elements exist (added below)
+  const g8  = GAMES.find(g => g.id === 'g8');
+  const g9  = GAMES.find(g => g.id === 'g9');
+  const g10 = GAMES.find(g => g.id === 'g10');
+
+  [
+    { game: g8,  elId: 'g12-spread', topTeam: 'Illinois', spread: currentSpreads.g12?.spread },
+    { game: g9,  elId: 'g13-spread', topTeam: 'Nebraska', spread: currentSpreads.g13?.spread },
+    { game: g10, elId: 'g14-spread', topTeam: 'Mich St',  spread: currentSpreads.g14?.spread },
+  ].forEach(({ game, elId, topTeam, spread }) => {
+    const el = document.getElementById(elId);
+    if (!el || !game || game.status !== 'final') return;
+    const w = getWinnerName(game);
+    const spStr = spread > 0
+      ? `${w} ~+${spread}` // underdog spread
+      : `${topTeam} ~${spread}`;
+    el.textContent = 'Proj: ' + spStr;
+  });
+}
+
+
+const TEAM_SEEDS = {
+  'Ohio State': 8, 'Iowa': 9,
+  'Wisconsin': 5, 'Washington': 12,
+  'Purdue': 7, "N'western": 15,
+  'UCLA': 6, 'Rutgers': 14,
+};
+
+function winner(game) {
+  if (game.status !== 'final') return null;
+  return game.home_score > game.away_score
+    ? { name: game.homeName, seed: TEAM_SEEDS[game.homeName] ?? '?' }
+    : { name: game.awayName, seed: TEAM_SEEDS[game.awayName] ?? '?' };
+}
+
+function slotWinner(slotId, seedId, teamId, game) {
+  const w = winner(game);
+  const seedEl = document.getElementById(seedId);
+  const teamEl = document.getElementById(teamId);
+  const slot   = document.getElementById(slotId);
+  if (!seedEl || !teamEl || !slot) return;
+
+  if (w) {
+    // Confirmed winner — strip any "(proj.)" and mark confirmed
+    seedEl.textContent = w.seed;
+    teamEl.innerHTML = w.name + ' ✓';
+    slot.style.background = 'rgba(34,197,94,0.06)';
+    slot.style.borderRadius = '4px';
+    slot.style.padding = '4px 6px';
+    slot.style.margin = '2px -6px';
+  }
+  // If not final, leave the (proj.) label as-is from the HTML
+}
+
+function updateBracket() {
+  const g7  = GAMES.find(g => g.id === 'g7');
+  const g8  = GAMES.find(g => g.id === 'g8');
+  const g9  = GAMES.find(g => g.id === 'g9');
+  const g10 = GAMES.find(g => g.id === 'g10');
+
+  // G7 winner → G11 (vs Michigan)
+  if (g7) slotWinner('g11-slot', 'g11-seed', 'g11-team', g7);
+  // G8 winner → G12 (vs Illinois)
+  if (g8) slotWinner('g12-slot', 'g12-seed', 'g12-team', g8);
+  // G9 winner → G13 (vs Nebraska)
+  if (g9) slotWinner('g13-slot', 'g13-seed', 'g13-team', g9);
+  // G10 winner → G14 (vs Michigan State)
+  if (g10) slotWinner('g14-slot', 'g14-seed', 'g14-team', g10);
+}
+
+function startPolling() {
+  fetchLiveScores();
+  pollTimer = setInterval(fetchLiveScores, POLL_MS);
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { clearInterval(pollTimer); }
+  else { fetchLiveScores(); pollTimer = setInterval(fetchLiveScores, POLL_MS); }
+});
+document.getElementById('refreshBtn').addEventListener('click', () => {
+  clearInterval(pollTimer); fetchLiveScores(); pollTimer = setInterval(fetchLiveScores, POLL_MS);
+});
+
+applyLocalTimes();
+startPolling();
+</script>
+
+</body>
+</html>
