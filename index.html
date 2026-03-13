@@ -229,7 +229,7 @@ scrollbar-width: none;
 border-bottom: 2px solid var(–border);
 background: var(–card);
 position: sticky;
-top: 52px;
+top: 88px; /* league switcher + header */
 z-index: 50;
 }
 .round-tabs::-webkit-scrollbar { display: none; }
@@ -615,10 +615,38 @@ background: var(–card2);
 }
 .leg { display: flex; align-items: center; gap: 5px; font-size: 0.64rem; color: var(–muted2); font-family: Arial, sans-serif; font-weight: 700; }
 .leg-dot { width: 8px; height: 8px; border-radius: 1px; flex-shrink: 0; }
+/* ── LEAGUE SWITCHER ── */
+.league-switcher {
+display: flex;
+background: #1a1410;
+border-bottom: 2px solid #333;
+position: sticky;
+top: 0;
+z-index: 200;
+}
+.league-tab {
+flex: 1; padding: 9px 6px;
+font-family: “Arial Black”, Arial, sans-serif;
+font-weight: 900; font-size: 0.68rem;
+text-transform: uppercase; letter-spacing: 0.06em;
+text-align: center; color: #666;
+text-decoration: none;
+border-bottom: 3px solid transparent;
+transition: color 0.15s, border-color 0.15s;
+}
+.league-tab.active { color: #fff; border-bottom-color: var(–red); }
+.league-tab:hover  { color: #ccc; }
 </style>
 
 </head>
 <body>
+
+<!-- LEAGUE SWITCHER -->
+
+<div class="league-switcher">
+  <a class="league-tab active" href="index.html">🏀 Big Ten</a>
+  <a class="league-tab" href="acc.html">🏀 ACC</a>
+</div>
 
 <!-- INSTALL BANNER -->
 
