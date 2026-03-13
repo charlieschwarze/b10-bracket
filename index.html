@@ -875,7 +875,7 @@ transition: color 0.15s, border-color 0.15s;
     <div class="gc-body">
       <div class="team-row pick-team"><span class="seed">2</span><span class="tname">★ Nebraska</span></div>
       <hr class="div-line">
-      <div class="team-row" id="g13-slot"><span class="seed" id="g13-seed">7</span><span class="tname" id="g13-team">Purdue <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+      <div class="team-row" id="g13-slot"><span class="seed" id="g13-seed">7</span><span class="tname" id="g13-team">Purdue ✓</span></div>
     </div>
     <div class="odds-row"><span class="odds-lbl">Proj:</span><span class="odds-val ov-fav">Neb ~-3</span><span class="odds-team">&nbsp;· Purdue won in Lincoln</span><span id="g13-spread" class="ou-tag">Fav: <strong style="color:var(--pick)">Nebraska</strong></span></div>
   </div>
@@ -903,7 +903,7 @@ transition: color 0.15s, border-color 0.15s;
   <div class="gc tbd">
     <div class="gc-top"><span class="gc-num">G15</span><span class="gc-status" style="color:var(--muted2)">Sat 1PM ET</span><div class="gc-spacer"></div><span class="ch-pill cp-cbs">CBS</span></div>
     <div class="gc-body">
-      <div class="team-row pick-team"><span class="seed">1</span><span class="tname">★ Michigan <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+      <div class="team-row pick-team"><span class="seed">1</span><span class="tname">★ Michigan</span></div>
       <hr class="div-line">
       <div class="team-row" id="g15-slot"><span class="seed" id="g15-seed">4</span><span class="tname" id="g15-team">Illinois <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
     </div>
@@ -913,7 +913,7 @@ transition: color 0.15s, border-color 0.15s;
   <div class="gc tbd">
     <div class="gc-top"><span class="gc-num">G16</span><span class="gc-status" style="color:var(--muted2)">Sat ~3:30PM ET</span><div class="gc-spacer"></div><span class="ch-pill cp-cbs">CBS</span></div>
     <div class="gc-body">
-      <div class="team-row pick-team"><span class="seed">3</span><span class="tname">★ Mich State <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
+      <div class="team-row pick-team"><span class="seed">3</span><span class="tname">★ Mich State</span></div>
       <hr class="div-line">
       <div class="team-row" id="g16-slot"><span class="seed" id="g16-seed">2</span><span class="tname" id="g16-team">Nebraska <span style="color:var(--muted);font-size:0.75em">(proj.)</span></span></div>
     </div>
@@ -1138,7 +1138,7 @@ const GAMES = [
   { id:'g8',  homeName:'Wisconsin',  awayName:'Washington', homeKey:'WIS',  awayKey:'WASH',
     home_score:0, away_score:0, period:'', clock:'', status:'loading', tipoff:'~2:30PM ET' },
   { id:'g9',  homeName:'Purdue',     awayName:'N\'western', homeKey:'PUR',  awayKey:'NW',
-    home_score:0, away_score:0, period:'', clock:'', status:'loading', tipoff:'6:30PM ET' },
+    home_score:1, away_score:0, period:'Final', clock:'', status:'final', tipoff:'6:30PM ET' },
   { id:'g10', homeName:'UCLA',       awayName:'Rutgers',    homeKey:'UCLA', awayKey:'RUTG',
     home_score:0, away_score:0, period:'', clock:'', status:'loading', tipoff:'~9PM ET' },
 ];
@@ -1625,22 +1625,19 @@ function winner(game) {
 }
 
 function slotWinner(slotId, seedId, teamId, game) {
-  const w = winner(game);
-  const seedEl = document.getElementById(seedId);
+  const w = winner(game);  // uses B10's winner() function
   const teamEl = document.getElementById(teamId);
   const slot   = document.getElementById(slotId);
   if (!seedEl || !teamEl || !slot) return;
 
   if (w) {
-    // Confirmed winner — strip any "(proj.)" and mark confirmed
     seedEl.textContent = w.seed;
-    teamEl.innerHTML = w.name + ' ✓';
-    slot.style.background = 'rgba(34,197,94,0.06)';
+    teamEl.innerHTML   = w.name + ' ✓';
+    slot.style.background   = 'rgba(34,197,94,0.06)';
     slot.style.borderRadius = '4px';
-    slot.style.padding = '4px 6px';
-    slot.style.margin = '2px -6px';
+    slot.style.padding      = '4px 6px';
+    slot.style.margin       = '2px -6px';
   }
-  // If not final, leave the (proj.) label as-is from the HTML
 }
 
 function updateBracket() {
