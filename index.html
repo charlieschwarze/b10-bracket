@@ -576,6 +576,37 @@ border-bottom: 1px solid var(–border); padding-bottom: 6px;
 .page-content { padding: 0 0 60px; touch-action: pan-y; }
 .round-panel  { touch-action: pan-y; }
 
+/* ── SWIPE TRANSITION ── */
+.round-panel {
+animation: none;
+}
+.round-panel.slide-in-left {
+animation: slideInLeft 0.22s ease-out;
+}
+.round-panel.slide-in-right {
+animation: slideInRight 0.22s ease-out;
+}
+@keyframes slideInLeft {
+from { opacity: 0; transform: translateX(32px); }
+to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+from { opacity: 0; transform: translateX(-32px); }
+to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── ACTIVE TAB FLASH ── */
+.round-tab.active {
+color: var(–red);
+border-bottom-color: var(–red);
+background: rgba(204,0,0,0.06);
+transition: background 0.3s ease;
+}
+.round-tab.tab-flash {
+background: rgba(204,0,0,0.18) !important;
+transition: background 0.05s ease;
+}
+
 /* ── LEGEND ── */
 .legend {
 display: flex; gap: 12px; flex-wrap: wrap;
@@ -904,13 +935,29 @@ background: var(–card2);
 // ── TABS ─────────────────────────────────────────────────────────────────────
 const PANELS = ['r1','r2','r3','r4','r5','r6'];
 
-function switchToPanel(id) {
+function switchToPanel(id, direction) {
+  const prev = document.querySelector('.round-panel.active');
   document.querySelectorAll('.round-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.round-panel').forEach(p => p.classList.remove('active'));
-  document.querySelector(`[data-panel="${id}"]`).classList.add('active');
-  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.round-panel').forEach(p => {
+    p.classList.remove('active', 'slide-in-left', 'slide-in-right');
+  });
+
+  const tab   = document.querySelector(`[data-panel="${id}"]`);
+  const panel = document.getElementById(id);
+
+  tab.classList.add('active');
+  panel.classList.add('active');
+
+  // Slide animation
+  if (direction === 'left')  panel.classList.add('slide-in-left');
+  if (direction === 'right') panel.classList.add('slide-in-right');
+
+  // Flash the active tab
+  tab.classList.add('tab-flash');
+  setTimeout(() => tab.classList.remove('tab-flash'), 300);
+
   // Scroll tab into view
-  document.querySelector(`[data-panel="${id}"]`).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
 document.getElementById('roundTabs').addEventListener('click', e => {
@@ -949,8 +996,8 @@ document.getElementById('roundTabs').addEventListener('click', e => {
     if (!activePanel) return;
     const idx = PANELS.indexOf(activePanel.id);
 
-    if (dx < 0 && idx < PANELS.length - 1) switchToPanel(PANELS[idx + 1]);
-    if (dx > 0 && idx > 0)                 switchToPanel(PANELS[idx - 1]);
+    if (dx < 0 && idx < PANELS.length - 1) switchToPanel(PANELS[idx + 1], 'left');
+    if (dx > 0 && idx > 0)                 switchToPanel(PANELS[idx - 1], 'right');
   }, { passive: true });
 })();
 
