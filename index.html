@@ -901,14 +901,48 @@ background: var(–card2);
 
 <script>
 // ── TABS ─────────────────────────────────────────────────────────────────────
+const PANELS = ['r1','r2','r3','r4','r5','r6'];
+
+function switchToPanel(id) {
+  document.querySelectorAll('.round-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.round-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`[data-panel="${id}"]`).classList.add('active');
+  document.getElementById(id).classList.add('active');
+  // Scroll tab into view
+  document.querySelector(`[data-panel="${id}"]`).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+}
+
 document.getElementById('roundTabs').addEventListener('click', e => {
   const tab = e.target.closest('.round-tab');
   if (!tab) return;
-  document.querySelectorAll('.round-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.round-panel').forEach(p => p.classList.remove('active'));
-  tab.classList.add('active');
-  document.getElementById(tab.dataset.panel).classList.add('active');
+  switchToPanel(tab.dataset.panel);
 });
+
+// ── SWIPE GESTURES ────────────────────────────────────────────────────────────
+(function() {
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+
+    // Only register horizontal swipes (dx > dy means more horizontal than vertical)
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+
+    const activePanel = document.querySelector('.round-panel.active');
+    if (!activePanel) return;
+    const idx = PANELS.indexOf(activePanel.id);
+
+    if (dx < 0 && idx < PANELS.length - 1) switchToPanel(PANELS[idx + 1]); // swipe left → next
+    if (dx > 0 && idx > 0)                 switchToPanel(PANELS[idx - 1]); // swipe right → prev
+  }, { passive: true });
+})();
 
 // ── INSTALL BANNER ────────────────────────────────────────────────────────────
 (function() {
